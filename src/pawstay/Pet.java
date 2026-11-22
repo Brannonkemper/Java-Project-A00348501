@@ -14,7 +14,8 @@ public class Pet {
 
     
     public Pet(String name) {
-        this(name, UNKNOWN);                
+        this(name, UNKNOWN);
+    }
 
     // 2) Name and breed
     public Pet(String name, String breed) {

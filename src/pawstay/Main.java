@@ -40,6 +40,10 @@ public class Main {
             System.out.println("Rejected bad owner: " + e.getMessage());
         }
 
+        // An owner with no emergency contacts used to crash with a NullPointerException
+        Owner noContacts = new Owner("Aoife Kelly", "085 765 4321", null);
+        System.out.println("Owner with no contacts:  " + noContacts);
+
         System.out.println();
         return owner;
     }

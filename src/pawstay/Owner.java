@@ -21,8 +21,11 @@ public final class Owner {
         this.name = name.strip();
         this.phone = phone;
 
-   
-        this.emergencyContacts = new ArrayList<>(emergencyContacts);
+        // Fix: new ArrayList<>(null) threw a NullPointerException,
+        // so an owner with no emergency contacts now gets an empty list.
+        this.emergencyContacts = (emergencyContacts == null)
+                ? new ArrayList<>()
+                : new ArrayList<>(emergencyContacts);
     }
 
     public String getName() {
