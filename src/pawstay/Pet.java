@@ -56,6 +56,16 @@ public class Pet {
         return owner;
     }
 
+    // Basic description shared by every pet. Subclasses EXTEND this using super.describe()
+    public String describe() {
+        return name + " (" + breed + ", " + weightKg + " kg)";
+    }
+
+    // Default care for any pet. Subclasses OVERRIDE this with their own needs.
+    public String careNeeds() {
+        return "Fresh water and a clean bed";
+    }
+
     public boolean hasFullDetails() {
         return !UNKNOWN.equals(breed) && weightKg > 0 && owner != null;
     }

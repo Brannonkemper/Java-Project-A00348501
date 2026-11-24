@@ -9,6 +9,7 @@ public class Main {
         System.out.println("=== PawStay Kennel Management ===\n");
         Owner owner = us1RegisterOwner();
         us2RegisterPets(owner);
+        us3PetTypes(owner);
     }
 
     
@@ -70,6 +71,33 @@ public class Main {
             full.setWeightKg(-3);
         } catch (IllegalArgumentException e) {
             System.out.println("Rejected bad weight: " + e.getMessage());
+        }
+
+        System.out.println();
+    }
+
+    // US3: Dog, Cat and Bird each have their own care needs
+    // (inheritance, super() vs super., overriding, polymorphism)
+    private static void us3PetTypes(Owner owner) {
+        System.out.println("--- US3: Dogs, cats and birds ---");
+
+        // POLYMORPHISM: the list's type is Pet, but each object is a Dog, Cat or Bird.
+        // At runtime Java calls the OVERRIDDEN version of describe() and careNeeds().
+        List<Pet> guests = new ArrayList<>();
+        guests.add(new Dog("Rex", "German Shepherd", 34.5, owner, 3));
+        guests.add(new Dog("Biscuit"));
+        guests.add(new Cat("Misty", "Persian", 4.2, owner, true));
+        guests.add(new Bird("Kiwi", "African Grey", 0.4, owner, true));
+
+        for (Pet pet : guests) {
+            System.out.println(pet.describe());
+            System.out.println("   Care: " + pet.careNeeds());
+        }
+
+        try {
+            new Dog("Lazy", "Basset Hound", 25, owner, 0);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Rejected dog: " + e.getMessage());
         }
 
         System.out.println();
