@@ -10,6 +10,7 @@ public class Main {
         Owner owner = us1RegisterOwner();
         us2RegisterPets(owner);
         us3PetTypes(owner);
+        us4Vaccinations(owner);
     }
 
     
@@ -100,6 +101,35 @@ public class Main {
             new Dog("Lazy", "Basset Hound", 25, owner, 0);
         } catch (IllegalArgumentException e) {
             System.out.println("Rejected dog: " + e.getMessage());
+        }
+
+        System.out.println();
+    }
+
+    // US4: Record a pet's vaccinations in one call (varargs)
+    private static void us4Vaccinations(Owner owner) {
+        System.out.println("--- US4: Record vaccinations ---");
+
+        Dog rex = new Dog("Rex", "German Shepherd", 34.5, owner, 3);
+
+        rex.addVaccinations();                                        // zero arguments is allowed
+        rex.addVaccinations("Rabies");                                // one argument
+        rex.addVaccinations("Distemper", "Parvovirus", "Kennel Cough"); // many arguments
+        System.out.println("Rex's vaccinations: " + rex.getVaccinations());
+
+        // You can also pass an array, because varargs IS an array underneath
+        String[] catVaccines = {"Cat Flu", "Feline Leukaemia"};
+        Cat misty = new Cat("Misty", "Persian", 4.2, owner, true);
+        misty.addVaccinations(catVaccines);
+        System.out.println("Misty's vaccinations: " + misty.getVaccinations());
+
+        System.out.println("Is Rex protected against Kennel Cough? " + rex.isVaccinatedAgainst("Kennel Cough"));
+        System.out.println("Is Misty protected against Rabies? " + misty.isVaccinatedAgainst("Rabies"));
+
+        try {
+            rex.addVaccinations("Leptospirosis", " ");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Rejected vaccine: " + e.getMessage());
         }
 
         System.out.println();
