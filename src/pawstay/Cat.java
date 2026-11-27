@@ -1,6 +1,7 @@
 package pawstay;
 
-public class Cat extends Pet {
+// final: a sealed class's subclasses must be final, sealed or non-sealed
+public final class Cat extends Pet {
 
     private final boolean indoorOnly;
 

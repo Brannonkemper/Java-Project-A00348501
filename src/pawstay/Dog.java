@@ -1,6 +1,7 @@
 package pawstay;
 
-public class Dog extends Pet {
+// final: a sealed class's subclasses must be final, sealed or non-sealed
+public final class Dog extends Pet {
 
     private final int walksPerDay;
 

@@ -2,8 +2,10 @@ package pawstay;
 
 
 //Register a pet with fewer details (name only) or with full details.
+// SEALED: only Dog, Cat and Bird may extend Pet - no other class can.
+// ABSTRACT: you can't create a plain "Pet", it must be a specific kind of pet.
 
-public class Pet {
+public sealed abstract class Pet permits Dog, Cat, Bird {
 
     private static final String UNKNOWN = "Unknown";
 
@@ -13,16 +15,16 @@ public class Pet {
     private final Owner owner;   
 
     
-    public Pet(String name) {
+    protected Pet(String name) {
         this(name, UNKNOWN);
     }
 
     // 2) Name and breed
-    public Pet(String name, String breed) {
+    protected Pet(String name, String breed) {
         this(name, breed, 0.0, null);      
     }
 
-    public Pet(String name, String breed, double weightKg, Owner owner) {
+    protected Pet(String name, String breed, double weightKg, Owner owner) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Pet name cannot be blank");
         }
@@ -61,10 +63,8 @@ public class Pet {
         return name + " (" + breed + ", " + weightKg + " kg)";
     }
 
-    // Default care for any pet. Subclasses OVERRIDE this with their own needs.
-    public String careNeeds() {
-        return "Fresh water and a clean bed";
-    }
+    // Abstract: every kind of pet MUST provide its own care needs.
+    public abstract String careNeeds();
 
     public boolean hasFullDetails() {
         return !UNKNOWN.equals(breed) && weightKg > 0 && owner != null;
