@@ -56,9 +56,11 @@ public class Main {
     private static void us2RegisterPets(Owner owner) {
         System.out.println("--- US2: Register pets ---");
 
-        Pet quick = new Pet("Biscuit");                               //name only
-        Pet partial = new Pet("Luna", "Border Collie");                 // name + breed
-        Pet full = new Pet("Rex", "German Shepherd", 34.5, owner);      // full details
+        // Fix: Pet is abstract now, so we register Dogs instead of plain Pets.
+        // The overloaded constructors still chain through Pet's this(...) calls.
+        Pet quick = new Dog("Biscuit");                                   // name only
+        Pet partial = new Dog("Luna", "Border Collie");                   // name + breed
+        Pet full = new Dog("Rex", "German Shepherd", 34.5, owner, 3);     // full details
 
         System.out.println("Name only:     " + quick + "  complete? " + quick.hasFullDetails());
         System.out.println("Name + breed:  " + partial + "  complete? " + partial.hasFullDetails());

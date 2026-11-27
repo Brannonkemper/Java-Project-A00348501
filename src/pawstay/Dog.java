@@ -11,6 +11,11 @@ public final class Dog extends Pet {
         this.walksPerDay = 2;
     }
 
+    public Dog(String name, String breed) {
+        super(name, breed);                // runs Pet(String name, String breed)
+        this.walksPerDay = 2;
+    }
+
     public Dog(String name, String breed, double weightKg, Owner owner, int walksPerDay) {
         super(name, breed, weightKg, owner);   // runs Pet's full constructor
         if (walksPerDay < 1) {
